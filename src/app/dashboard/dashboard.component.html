@@ -1,0 +1,183 @@
+<mat-card>
+  <mat-tab-group mat-align-tabs="end">
+    <mat-tab label="Search">
+      <mat-card>
+        <mat-card-title>Search User</mat-card-title>
+
+        <mat-card-content>
+          <mat-grid-list cols="2" rowHeight="3:1">
+            <mat-grid-tile rowspan = '2'>
+              <div class="div">
+                <form class="example-form">
+                  <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>User</mat-label>
+                    <input
+                      type="text"
+                      placeholder="Pick one"
+                      aria-label="User"
+                      matInput
+                      [(ngModel)]="user"
+                      name="user"
+                    />
+                    <!-- [matAutocomplete]="auto" -->
+                    <button
+                      mat-icon-button
+                      matSuffix
+                      (click)="userDetails = null; user = null"
+                    >
+                      <mat-icon>cancel</mat-icon>
+                    </button>
+                    <!-- <mat-autocomplete #auto="matAutocomplete">
+            <mat-option
+              *ngFor="
+                let option of filteredOptions | search: 'login':user | async
+              "
+              [value]="option"
+            >
+              {{ option }}
+            </mat-option>
+          </mat-autocomplete> -->
+                  </mat-form-field>
+                </form>
+                <button
+                  mat-raised-button color="primary"
+                  class="srchBtn"
+                  (click)="searchUser()"
+                >
+                  Search
+                </button>
+              </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <div class="user">
+                <mat-card
+                  class="example-card"
+                  *ngIf="userDetails != null"
+                  class="example-card"
+                  (click)="openDialog(userDetails)"
+                >
+                  <mat-card-title-group style="min-width:'335px'">
+                    <mat-card-title>{{ userDetails.name }}</mat-card-title>
+                    <mat-card-subtitle>
+                      <div>Followers : {{ userDetails.followers }}</div>
+                      <div>
+                        Following : {{ userDetails.following }}
+                      </div>
+                      </mat-card-subtitle
+                    >
+                    <img mat-card-lg-image src="{{ userDetails.avatar_url }}" />
+                  </mat-card-title-group>
+                  <mat-card-content> </mat-card-content>
+                </mat-card>
+
+                <!--  <mat-card
+                  *ngIf="userDetails != null"
+                  class="example-card"
+                  (click)="openDialog(userDetails)"
+                >
+                  <mat-card-title-group>
+                    <mat-card-title>{{ userDetails.name }}</mat-card-title>
+                  </mat-card-title-group>
+                  <mat-card-content>
+                    <mat-grid-list cols="4" rowHeight="100px">
+                      <mat-grid-tile [colspan]="3" [rowspan]="2">
+                        <div>Followers : {{ userDetails.followers }}</div>
+                        <div>Following : {{ userDetails.following }}</div>
+                      </mat-grid-tile>
+                      <mat-grid-tile [colspan]="1" [rowspan]="2">
+                        <img
+                          mat-card-sm-image
+                          src="{{ userDetails.avatar_url }}"
+                        />
+                      </mat-grid-tile>
+                    </mat-grid-list>
+                  </mat-card-content>
+                </mat-card> -->
+              </div>
+            </mat-grid-tile>
+          </mat-grid-list>
+        </mat-card-content>
+        <mat-card-footer>
+          <!-- {{userDetails | json}} -->
+        </mat-card-footer>
+      </mat-card>
+    </mat-tab>
+    <mat-tab label="History">
+      <mat-card>
+        <mat-card-title>Searched Users</mat-card-title>
+        <mat-list *ngIf="history.length > 0">
+          <div mat-subheader></div>
+          <mat-list-item *ngFor="let hist of history">
+            <mat-icon style="color: red;" (click)="delHist(hist)" mat-list-icon
+              >delete</mat-icon
+            >
+            <div mat-line (click)="openDialog(hist)">
+              <span> {{ hist.login }} - </span>
+              <span>
+                {{ hist.success ? 'User Found' : 'No Such User FOund' }}</span
+              >
+            </div>
+          </mat-list-item>
+        </mat-list>
+        <mat-card-subtitle *ngIf="history.length == 0"
+          >No Records Exist</mat-card-subtitle
+        >
+      </mat-card>
+    </mat-tab>
+  </mat-tab-group>
+
+  <!-- <mat-card class="example-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>Shiba Inu</mat-card-title>
+      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+    </mat-card-header>
+    <img
+      mat-card-image
+      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+      alt="Photo of a Shiba Inu"
+    />
+    <mat-card-content>
+      <p>
+        The Shiba Inu is the smallest of the six original and distinct spitz
+        breeds of dog from Japan. A small, agile dog that copes very well with
+        mountainous terrain, the Shiba Inu was originally bred for hunting.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>LIKE</button>
+      <button mat-button>SHARE</button>
+    </mat-card-actions>
+  </mat-card> -->
+
+  <!--  <mat-card>
+    {{ userDetails | json }}
+    <div class="col-md-4">
+      <div class="card card-profile">
+        <div class="card-avatar">
+          <a href="javascript:void(0)">
+            <img
+              class="fluid"
+              height="300px"
+              width="300px"
+              style="border-radius: 50%;"
+              src="https://avatars.githubusercontent.com/u/279931?v=4"
+            />
+          </a>
+        </div>
+        <div class="card-body">
+          <h6 class="card-category text-gray">CEO / Co-Founder</h6>
+          <h4 class="card-title">Alec Thompson</h4>
+          <p class="card-description">
+            Don't be scared of the truth because we need to restart the human
+            foundation in truth And I love you like Kanye loves Kanye I love
+            Rick Owens’ bed design but the back is...
+          </p>
+          <a href="javascript:void(0)" class="btn btn-danger btn-round"
+            >Follow</a
+          >
+        </div>
+      </div>
+    </div>
+  </mat-card> -->
+</mat-card>

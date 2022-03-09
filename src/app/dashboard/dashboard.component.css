@@ -1,0 +1,21 @@
+.example-card {
+  /* max-width: 400px; */
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.example-full-width{
+  min-width: 400px;
+}
+.div{
+  text-align: center;
+}
+.srchBtn{
+  min-width: 200px;
+}
+/* mat-grid-tile {
+ background: lightblue;
+} */

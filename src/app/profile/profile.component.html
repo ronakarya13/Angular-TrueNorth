@@ -1,0 +1,20 @@
+<mat-card class="example-card">
+  <mat-card-title-group>
+    <mat-card-title>{{data.name}}</mat-card-title>
+    <mat-card-subtitle>
+      <span>GitHub Username : <a target="_blank" href="data.html_url">{{ data.login }}</a></span>
+      <span>Followers :{{data.followers}}</span>
+      <span>Following :{{data.following}}</span>
+      <span>Public Repository :{{data.public_repos}}</span>
+      <span>Creation Date :{{data.created_at | date: 'dd/MM/yyyy'}}</span>
+      <span>Last Updated :{{data.updated_at | date: 'dd/MM/yyyy'}}</span>
+    </mat-card-subtitle>
+    <img
+      mat-card-lg-image
+      src="{{data.avatar_url}}"
+    />
+  </mat-card-title-group>
+  <mat-card-content>
+ 
+  </mat-card-content>
+</mat-card>
