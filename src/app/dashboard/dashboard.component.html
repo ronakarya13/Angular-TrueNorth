@@ -6,7 +6,7 @@
 
         <mat-card-content>
           <mat-grid-list cols="2" rowHeight="3:1">
-            <mat-grid-tile rowspan = '2'>
+            <mat-grid-tile rowspan="2">
               <div class="div">
                 <form class="example-form">
                   <mat-form-field class="example-full-width" appearance="fill">
@@ -40,7 +40,8 @@
                   </mat-form-field>
                 </form>
                 <button
-                  mat-raised-button color="primary"
+                  mat-raised-button
+                  color="primary"
                   class="srchBtn"
                   (click)="searchUser()"
                 >
@@ -60,11 +61,8 @@
                     <mat-card-title>{{ userDetails.name }}</mat-card-title>
                     <mat-card-subtitle>
                       <div>Followers : {{ userDetails.followers }}</div>
-                      <div>
-                        Following : {{ userDetails.following }}
-                      </div>
-                      </mat-card-subtitle
-                    >
+                      <div>Following : {{ userDetails.following }}</div>
+                    </mat-card-subtitle>
                     <img mat-card-lg-image src="{{ userDetails.avatar_url }}" />
                   </mat-card-title-group>
                   <mat-card-content> </mat-card-content>
@@ -103,7 +101,7 @@
       </mat-card>
     </mat-tab>
     <mat-tab label="History">
-      <mat-card>
+      <mat-card style="min-height: 500px;">
         <mat-card-title>Searched Users</mat-card-title>
         <mat-list *ngIf="history.length > 0">
           <div mat-subheader></div>
