@@ -65,26 +65,27 @@ export class DashboardComponent implements OnInit {
     );
   }
 
-  openDialog(val): void {
-    console.log('profile clicked');
-    const dialogRef = this.dialog.open(ProfileComponent, {
-      width: '50%',
-      data: val,
-    });
+  openDialog(val) {
+    if (val.success) {
+      const dialogRef = this.dialog.open(ProfileComponent, {
+        width: '50%',
+        data: val,
+      });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
-    });
+      dialogRef.afterClosed().subscribe((result) => {});
+    }
   }
 
   searchUser() {
+    this.userDetails = null;
     if (this.user != null && this.user.trim() != '') {
       this.apiProvider.getSinglekey(this.user).then((data) => {
         console.log('search = ', this.user, data);
         if (data.length == 0) {
           this.apiProvider.getUser(this.user).subscribe((res) => {
             if (res) {
-              this.userDetails = res;
+              console.log('res = ', res);
+              this.userDetails = res.success ? res : null;
               this.apiProvider.add(res);
             }
           });
@@ -97,13 +98,11 @@ export class DashboardComponent implements OnInit {
 
   getHistory() {
     this.apiProvider.keys().then((res) => {
-      // console.log(res);
       this.history = res;
     });
   }
 
   delHist(hist) {
-    console.log('delete', hist);
     this.apiProvider.del(hist.login).then((res) => {
       this.zone.run(() => {
         this.snackBar

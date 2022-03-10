@@ -67,30 +67,6 @@
                   </mat-card-title-group>
                   <mat-card-content> </mat-card-content>
                 </mat-card>
-
-                <!--  <mat-card
-                  *ngIf="userDetails != null"
-                  class="example-card"
-                  (click)="openDialog(userDetails)"
-                >
-                  <mat-card-title-group>
-                    <mat-card-title>{{ userDetails.name }}</mat-card-title>
-                  </mat-card-title-group>
-                  <mat-card-content>
-                    <mat-grid-list cols="4" rowHeight="100px">
-                      <mat-grid-tile [colspan]="3" [rowspan]="2">
-                        <div>Followers : {{ userDetails.followers }}</div>
-                        <div>Following : {{ userDetails.following }}</div>
-                      </mat-grid-tile>
-                      <mat-grid-tile [colspan]="1" [rowspan]="2">
-                        <img
-                          mat-card-sm-image
-                          src="{{ userDetails.avatar_url }}"
-                        />
-                      </mat-grid-tile>
-                    </mat-grid-list>
-                  </mat-card-content>
-                </mat-card> -->
               </div>
             </mat-grid-tile>
           </mat-grid-list>
@@ -100,22 +76,31 @@
         </mat-card-footer>
       </mat-card>
     </mat-tab>
-    <mat-tab label="History">
+    <mat-tab label="History" (click)="getHistory()">
       <mat-card style="min-height: 500px;">
         <mat-card-title>Searched Users</mat-card-title>
         <mat-list *ngIf="history.length > 0">
           <div mat-subheader></div>
-          <mat-list-item *ngFor="let hist of history">
-            <mat-icon style="color: red;" (click)="delHist(hist)" mat-list-icon
-              >delete</mat-icon
-            >
-            <div mat-line (click)="openDialog(hist)">
-              <span> {{ hist.login }} - </span>
-              <span>
-                {{ hist.success ? 'User Found' : 'No Such User FOund' }}</span
+          <mat-action-list>
+            <mat-list-item *ngFor="let hist of history">
+              <mat-icon
+                style="color: red;"
+                (click)="delHist(hist)"
+                mat-list-icon
+                >delete</mat-icon
               >
-            </div>
-          </mat-list-item>
+              <div
+                mat-line
+                (click)="openDialog(hist)"
+                [ngStyle]="{ cursor: hist.success ? '' : 'not-allowed' }"
+              >
+                <span> {{ hist.login }} - </span>
+                <span>
+                  {{ hist.success ? 'User Found' : 'No Such User Found' }}</span
+                >
+              </div>
+            </mat-list-item>
+          </mat-action-list>
         </mat-list>
         <mat-card-subtitle *ngIf="history.length == 0"
           >No Records Exist</mat-card-subtitle
@@ -123,59 +108,4 @@
       </mat-card>
     </mat-tab>
   </mat-tab-group>
-
-  <!-- <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Shiba Inu</mat-card-title>
-      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-    </mat-card-header>
-    <img
-      mat-card-image
-      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-      alt="Photo of a Shiba Inu"
-    />
-    <mat-card-content>
-      <p>
-        The Shiba Inu is the smallest of the six original and distinct spitz
-        breeds of dog from Japan. A small, agile dog that copes very well with
-        mountainous terrain, the Shiba Inu was originally bred for hunting.
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card> -->
-
-  <!--  <mat-card>
-    {{ userDetails | json }}
-    <div class="col-md-4">
-      <div class="card card-profile">
-        <div class="card-avatar">
-          <a href="javascript:void(0)">
-            <img
-              class="fluid"
-              height="300px"
-              width="300px"
-              style="border-radius: 50%;"
-              src="https://avatars.githubusercontent.com/u/279931?v=4"
-            />
-          </a>
-        </div>
-        <div class="card-body">
-          <h6 class="card-category text-gray">CEO / Co-Founder</h6>
-          <h4 class="card-title">Alec Thompson</h4>
-          <p class="card-description">
-            Don't be scared of the truth because we need to restart the human
-            foundation in truth And I love you like Kanye loves Kanye I love
-            Rick Owens’ bed design but the back is...
-          </p>
-          <a href="javascript:void(0)" class="btn btn-danger btn-round"
-            >Follow</a
-          >
-        </div>
-      </div>
-    </div>
-  </mat-card> -->
 </mat-card>

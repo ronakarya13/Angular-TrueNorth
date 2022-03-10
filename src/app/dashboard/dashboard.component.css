@@ -1,5 +1,6 @@
 .example-card {
   /* max-width: 400px; */
+  background-color: gainsboro;
 }
 
 .example-header-image {
@@ -7,13 +8,13 @@
   background-size: cover;
 }
 
-.example-full-width{
+.example-full-width {
   min-width: 400px;
 }
-.div{
+.div {
   text-align: center;
 }
-.srchBtn{
+.srchBtn {
   min-width: 200px;
 }
 /* mat-grid-tile {
